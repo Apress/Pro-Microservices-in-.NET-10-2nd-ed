@@ -1,14 +1,16 @@
-Pro Microservices in .NET 10
-============================
+# Apress Source Code
 
-by [Sean Whitesell](https://seanwhitesell.com/) and [Rob Richardson](https://robrich.org/)
+This repository accompanies [*Pro Microservices in .NET 10*](https://www.link.springer.com/book/10.1007/979-8-8688-2049-6) by Sean Whitesell and Rob Richardson (Apress, 2025).
 
-Buy the book on Amazon: [Pro Microservices in .NET 10](https://www.amazon.com/Pro-Microservices-NET-10-Holistic/dp/B0FN6Z1ZJ4/).
+[comment]: #cover
+![Cover image](979-8-8688-2048-9.jpg)
 
-This repository contains expanded code examples from the book.  Some chapters don't have code samples because the chapter discusses theory or non-code topics.
+Download the files as a zip using the green button, or clone the repository to your machine using Git.
 
+## Releases
 
-License
--------
+Release v1.0 corresponds to the code in the published book, without corrections or updates.
 
-MIT, Copyright 2025 Apress
+## Contributions
+
+See the file Contributing.md for more information on how you can contribute to this repository.
