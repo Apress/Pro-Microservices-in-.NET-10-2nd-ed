@@ -1,0 +1,31 @@
+﻿@page "{id:int}"
+@model OrderViewModel
+
+@{
+    ViewBag.Title = "View Order "+Model.Order.Id;
+}
+
+<div class="row">
+    <h1>@ViewBag.Title</h1>
+</div>
+
+<dl class="row">
+    <dt class = "col-sm-2">
+        @Html.DisplayNameFor(model => model.Order.CustomerId)
+    </dt>
+    <dd class = "col-sm-10">
+        @Html.DisplayFor(model => model.Order.CustomerId)
+    </dd>
+    <dt class = "col-sm-2">
+        @Html.DisplayNameFor(model => model.Order.OrderDate)
+    </dt>
+    <dd class = "col-sm-10">
+        @Html.DisplayFor(model => model.Order.OrderDate)
+    </dd>
+    <dt class = "col-sm-2">
+        @Html.DisplayNameFor(model => model.Order.OrderTotal)
+    </dt>
+    <dd class = "col-sm-10">
+        @Html.DisplayFor(model => model.Order.OrderTotal)
+    </dd>
+</dl>

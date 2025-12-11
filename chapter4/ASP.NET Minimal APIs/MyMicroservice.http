@@ -1,0 +1,11 @@
+@MyMicroservice_HostAddress = https://localhost:7000
+
+GET {{MyMicroservice_HostAddress}}/order/
+Accept: application/json
+
+###
+
+GET {{MyMicroservice_HostAddress}}/order/1
+Accept: application/json
+
+###

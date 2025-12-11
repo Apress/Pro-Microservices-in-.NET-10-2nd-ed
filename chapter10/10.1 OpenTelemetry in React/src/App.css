@@ -1,0 +1,16 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.card {
+  padding: 2em;
+}
+
+button {
+  border: 1px solid #ccc;
+  padding: 0.5em;
+  border-radius: .25em;;
+}

@@ -1,0 +1,42 @@
+﻿@page
+@model OrderListModel
+@{
+	ViewBag.Title = "Orders List";
+}
+
+<div class="row">
+	<h1>@ViewBag.Title</h1>
+</div>
+
+@if (Model.Orders.Count == 0)
+{
+	<div class="row">
+		<p>No orders found in the database.</p>
+	</div>
+}
+
+<div class="row">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>CustomerId</th>
+				<th>Order Date</th>
+				<th>Order Total</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var order in Model.Orders)
+			{
+				<tr>
+					<td>
+						<a asp-page="./View" asp-route-id="@order.Id">@order.Id</a>
+					</td>
+					<td>@order.CustomerId</td>
+					<td>@order.OrderDate.ToString("g")</td>
+					<td>@order.OrderTotal</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>

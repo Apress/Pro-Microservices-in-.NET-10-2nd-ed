@@ -1,0 +1,43 @@
+﻿@model Order
+
+@{
+    ViewBag.Title = "Create a new Order";
+}
+
+<div class="row">
+    <h1>@ViewBag.Title</h1>
+</div>
+
+<div class="row">
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CustomerId" class="control-label"></label>
+                <input type="number" required asp-for="CustomerId" class="form-control" />
+                <span asp-validation-for="CustomerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderDate" class="control-label"></label>
+                <input type="date" required asp-for="OrderDate" class="form-control" />
+                <span asp-validation-for="OrderDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OrderTotal" class="control-label"></label>
+                <input type="number" required asp-for="OrderTotal" class="form-control" />
+                <span asp-validation-for="OrderTotal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

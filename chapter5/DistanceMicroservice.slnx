@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="DistanceMicroservice/DistanceMicroservice.csproj" />
+  <Project Path="GoogleRouteService/GoogleRouteService.csproj" />
+  <Project Path="GrpcDistance/GrpcDistance.csproj" />
+  <Project Path="gRpcTester/gRpcTester.csproj" />
+</Solution>

@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcDistanceMicroserviceClient";
+
+package distance;
+
+// The greeting service definition.
+service DistanceInfoSvc {
+  // Sends a greeting
+  rpc GetDistance (Addresses) returns (DistanceInformation);
+}
+
+// The request message containing the user's name.
+message Addresses {
+  string OriginAddress = 1;
+  string DestinationAddress = 2;
+}
+
+// The response message containing the greetings.
+message DistanceInformation {
+  string OriginAddress = 1;
+  string DestinationAddress = 2;
+  string Message = 3;
+  repeated Route routes = 4;
+}
+
+message Route {
+  int32 DistanceMeters = 1;
+  string Duration = 2;
+}

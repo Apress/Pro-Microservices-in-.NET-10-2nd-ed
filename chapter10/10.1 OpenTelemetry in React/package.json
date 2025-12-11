@@ -1,0 +1,39 @@
+{
+  "name": "pro-microservices",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint . --fix",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@opentelemetry/api": "^1.9.0",
+    "@opentelemetry/auto-instrumentations-web": "^0.49.0",
+    "@opentelemetry/context-zone": "^2.0.1",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.203.0",
+    "@opentelemetry/instrumentation": "^0.203.0",
+    "@opentelemetry/instrumentation-document-load": "^0.48.0",
+    "@opentelemetry/instrumentation-fetch": "^0.203.0",
+    "@opentelemetry/instrumentation-xml-http-request": "^0.203.0",
+    "@opentelemetry/opentelemetry-browser-detector": "^0.203.0",
+    "@opentelemetry/sdk-trace-web": "^2.0.1",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.32.0",
+    "@types/react": "^19.1.9",
+    "@types/react-dom": "^19.1.7",
+    "@vitejs/plugin-react": "^4.7.0",
+    "eslint": "^9.32.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.3.0",
+    "typescript": "~5.8.3",
+    "typescript-eslint": "^8.39.0",
+    "vite": "^7.1.0"
+  }
+}

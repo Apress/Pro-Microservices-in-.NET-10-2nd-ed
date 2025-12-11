@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-microservice
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-microservice
+  template:
+    metadata:
+      labels:
+        app: my-microservice
+        version: v0.1
+    spec:
+      containers:
+      - name: my-microservice
+        image: myaccount.azurecr.io/myimage:v0.1
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+        ports:
+        - containerPort: 8080
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: "Production"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-microservice
+spec:
+  type: NodePort
+  selector:
+    app: my-microservice
+  ports:
+  - port: 8080
+    targetPort: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-microservice
+  labels:
+    name: my-microservice
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    acme.cert-manager.io/http01-edit-in-place: "true"
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - my-microservice.example.com
+    secretName: tls-secret
+  rules:
+  - host: my-microservice.example.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: my-microservice
+            port:
+              number: 8080

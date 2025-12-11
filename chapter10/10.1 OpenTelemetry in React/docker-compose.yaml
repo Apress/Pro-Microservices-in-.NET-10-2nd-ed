@@ -1,0 +1,38 @@
+services:
+
+  aspire:
+    image: mcr.microsoft.com/dotnet/aspire-dashboard
+    ports:
+    - 8000:8000 # web: http://localhost:8000
+    - 4317:18889 # gRPC collector
+    - 4318:18890 # http collector
+    container_name: aspire
+    environment:
+      ASPNETCORE_URLS: http://0.0.0.0:8000
+      DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS: true
+      DASHBOARD__OTLP__CORS__ALLOWEDORIGINS: '*'
+      DASHBOARD__OTLP__CORS__ALLOWEDHEADERS: '*'
+      ASPIRE_DASHBOARD_OTLP_HTTP_ENDPOINT_URL: http://0.0.0.0:18890
+    networks:
+    - standalone
+
+  react:
+    build:
+      args:
+        # from the browser's perspective:
+        VITE_OTEL_EXPORTER_OTLP_ENDPOINT: http://localhost:4318
+        VITE_OTEL_EXPORTER_OTLP_HEADERS: ''
+        VITE_OTEL_SERVICE_NAME: pro-microservices-web
+        VITE_OTEL_SERVICE_VERSION: 0.0.1
+    ports:
+    - 8001:80
+    #environment:
+      # they're hard-coded in nginx.conf
+      #OTEL_SERVICE_NAME: pro-microservices-nginx
+    networks:
+    - standalone
+    links:
+    - aspire
+
+networks:
+  standalone:

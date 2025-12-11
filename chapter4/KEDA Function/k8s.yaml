@@ -1,0 +1,78 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myfunction
+spec:
+  #replicas: # KEDA will scale as needed
+  selector:
+    matchLabels:
+      app: myfunction
+  template:
+    metadata:
+      labels:
+        app: myfunction
+    spec:
+      containers:
+        - name: myfunction
+          image: myregistry.azurecr.io/myfunction:latest  # your container image
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          env:
+            - name: AzureWebJobsStorage
+              value: "UseDevelopmentStorage=true"
+            - name: FUNCTIONS_WORKER_RUNTIME
+              value: "dotnet-isolated"
+            - name: AzureWebJobsSecretStorageType
+              value: "files"
+            - name: ASPNETCORE_URLS
+              value: "http://+:80"
+            - name: WEBSITES_PORT
+              value: "80"
+          resources: {} # define resource requests/limits as needed
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: myfunction
+spec:
+  selector:
+    app: myfunction
+  ports:
+    - port: 80
+      targetPort: 80
+  type: ClusterIP # or NodePort based on your need
+---
+apiVersion: http.keda.sh/v1alpha1
+kind: HTTPScaledObject
+metadata:
+  name: myfunction-scaler
+spec:
+  host: myfunc.example.com # set to your domain
+  targetPendingRequests: 100
+  scaleTargetRef:
+    deployment: myfunction
+    service: myfunction
+    port: 80
+  replicas:
+    min: 0
+    max: 10
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: myfunction
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+    - host: myfunc.example.com # set to your domain
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: myfunction
+                port:
+                  number: 80

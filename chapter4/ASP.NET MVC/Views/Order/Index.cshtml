@@ -1,0 +1,43 @@
+﻿@model List<Order>
+@{
+	ViewBag.Title = "Orders List";
+}
+
+<div class="row">
+	<h1>@ViewBag.Title</h1>
+</div>
+
+<div>
+	<a class="btn btn-primary" asp-action="Add">Add a new Orders</a>
+</div>
+@if (Model.Count > 0) 
+{
+	<div class="row">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>CustomerId</th>
+					<th>Order Date</th>
+					<th>Order Total</th>
+					<th>&nbsp;</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var order in Model)
+				{
+					<tr>
+						<td>@order.Id</td>
+						<td>@order.CustomerId</td>
+						<td>@order.OrderDate.ToString("g")</td>
+						<td>@order.OrderTotal</td>
+						<td>
+							<a asp-action="Edit" asp-route-id="@order.Id">Edit</a>
+							<a asp-action="Delete" asp-route-id="@order.Id">Delete</a>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+}

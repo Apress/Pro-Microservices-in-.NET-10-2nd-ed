@@ -1,0 +1,12 @@
+# downloaded files
+node_modules
+# built files
+dist
+# user-specific files
+package-lock.json
+# temp files
+.DS_Store
+*.orig
+# secrets
+.env
+# non-production files

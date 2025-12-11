@@ -1,0 +1,21 @@
+﻿@DistanceMicroservice_HostAddress = https://localhost:7274
+
+POST {{DistanceMicroservice_HostAddress}}/getdistanceinfo
+Content-Type: application/json
+
+{
+  "OriginAddress":"101 S. Main St. Chicago, IL",
+  "DestinationAddress":"500 S. Main St. Los Angeles, CA"
+}
+###
+
+
+
+POST {{DistanceMicroservice_HostAddress}}/getdistanceinfo
+Content-Type: application/json
+
+{
+  //Addresses
+}
+
+###
